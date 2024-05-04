@@ -13,7 +13,7 @@ function Navbar() {
         {/* Search Bar */}
         <SearchBar />
         {/* Account */}
-        <div>a</div>
+        <div>a  </div>
       </div>
     </nav>
   );
