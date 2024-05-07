@@ -1,14 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllProducts } from "../../../../Store/ProductSlice";
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import { Link } from "react-router-dom";
-function SearchBar() {
+
+function SearchBar({ resPopup }) {
   const product = useSelector((state) => state.products.item);
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState("");
   let [store, setStore] = useState([]);
 
-  const findProduct = (value) => { 
+  const findProduct = (value) => {
     const result = product.products.filter((item) => {
       if (value && value.length > 1) {
         return (
@@ -52,13 +53,14 @@ function SearchBar() {
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
         </svg>
       </div>
-      <div className="absolute w-full left-6  max-w-sm bg-white border border-t-0 flex flex-col shadow-md overflow-y-scroll ">
+      <div className="absolute w-full md:max-w-sm lg:left-6 bg-white flex flex-col shadow-md overflow-y-scroll ">
         {store.map((item) => {
           return (
             <Link
               to={`/products/:${item.title}`}
               key={item.id}
-              className="px-2 py-1 border-b hover:bg-slate-100 first-of-type:pt-5"
+              onClick={resPopup}
+              className="px-2 py-1 border-b hover:bg-slate-100 first-of-type:pt-5 z-50 bg-white"
             >
               {item.title}
             </Link>

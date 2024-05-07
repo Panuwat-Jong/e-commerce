@@ -16,8 +16,8 @@ function UserNav() {
   
 
   return (
-    <div className="relative" onClick={() => setOnShow(!onShow)}>
-      <div className="flex items-center gap-2 cursor-pointer">
+    <div className="relative " onClick={() => setOnShow(!onShow)}>
+      <div className="flex items-center gap-2 cursor-pointer ">
         <img src={user.imageAccount} alt="logo" className="h-6 rounded-full" />
         <div>
           <a href="#" className="text-2xl text-gray-500">
@@ -26,8 +26,8 @@ function UserNav() {
         </div>
       </div>
       {onShow ? (
-        <div className="absolute border-2 shadow-lg px-6 py-3 bg-white left-[-25px] top-10">
-          <ul>
+        <div className="absolute border-2 shadow-lg px-6 py-3 bg-white left-[-25px] top-10 ">
+          <ul className="">
             <li className="flex items-center gap-2 ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +43,7 @@ function UserNav() {
               </svg>
               <Link
                 to={"/account"}
-                className="text-lg text-gray-500 hover:underline"
+                className="text-lg text-gray-500 hover:underline "
               >
                 Account
               </Link>
