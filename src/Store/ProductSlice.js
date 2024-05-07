@@ -79,5 +79,4 @@ const ProductSlice = createSlice({
       );
   },
 });
-export const { findProduct } = ProductSlice.actions;
 export default ProductSlice.reducer;

@@ -1,0 +1,13 @@
+{
+    "user": {
+        "imageAccount": "https://i.ebayimg.com/images/g/~rEAAOSwGTReg--B/s-l1600.jpg",
+        "username": "admin",
+        "password": "1234",
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "admin@test.com",
+        "age": 30,
+        "address": "1745 T Street Southeast Washington, 20020, DC",
+        "company":"Blanda-O'Keefe Help Desk Operator Marketing 629 Debbie Drive Nashville, 37076, TN"
+    }
+}

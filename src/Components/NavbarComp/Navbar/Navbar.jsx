@@ -1,6 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar/SearchBar";
+import NavbarRight from "./NavbarRight/NavbarRight";
 
 function Navbar() {
   return (
@@ -13,7 +13,7 @@ function Navbar() {
         {/* Search Bar */}
         <SearchBar />
         {/* Account */}
-        <div>a  </div>
+        <NavbarRight />
       </div>
     </nav>
   );
