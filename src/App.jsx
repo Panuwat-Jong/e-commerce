@@ -6,19 +6,22 @@ import DetailProduct from "./Pages/Detail/DetailProduct";
 import Navbar from "./Components/NavbarComp/Navbar/Navbar";
 import AccountUser from "./Pages/Account/AccountUser";
 import Wishlist from "./Pages/Wishlist/Wishlist";
+import Header from "./Components/Header/Header";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="" element={<HomePage />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/account" element={<AccountUser />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/products/:name" element={<DetailProduct />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="" element={<HomePage />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/account" element={<AccountUser />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/products/:name" element={<DetailProduct />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
