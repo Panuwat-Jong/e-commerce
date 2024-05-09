@@ -5,7 +5,7 @@ function Cart() {
   return (
     <div>
       {popupCart ? (
-        <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-end transition-all ease-in-out duration-300">
+        <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-end transition-all ease-in-out duration-300 ">
           <div className="bg-white  sm:w-full max-w-sm p-5 ">
             <div className="flex flex-row justify-between items-center">
               <h3 className="text-2xl font-bold ">Your Cart</h3>
