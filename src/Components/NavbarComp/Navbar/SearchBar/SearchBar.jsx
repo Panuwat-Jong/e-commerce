@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllProducts } from "../../../../Store/ProductSlice";
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function SearchBar({ resPopup }) {
-  const product = useSelector((state) => state.products.item);
+  const product = useSelector((state) => state.products.itemFull);
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState("");
   let [store, setStore] = useState([]);

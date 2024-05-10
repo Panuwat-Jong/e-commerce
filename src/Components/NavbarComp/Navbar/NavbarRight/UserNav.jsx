@@ -20,9 +20,9 @@ function UserNav() {
       <div className="flex items-center gap-2 cursor-pointer ">
         <img src={user.imageAccount} alt="logo" className="h-6 rounded-full" />
         <div>
-          <a href="#" className="text-2xl text-gray-500">
+          <p className="text-2xl text-gray-500">
             {user.username}
-          </a>
+          </p>
         </div>
       </div>
       {onShow ? (

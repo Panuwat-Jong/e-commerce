@@ -5,7 +5,7 @@ import { BASE_URL_PRODUCTS } from "../Utils/BaseUrl";
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
-    const response = await axios.get(`${BASE_URL_PRODUCTS}`);
+    const response = await axios.get(`${BASE_URL_PRODUCTS}?limit=${30}`);
     return response.data;
   }
 );
@@ -42,6 +42,7 @@ const ProductSlice = createSlice({
   name: "products",
   initialState: {
     item: [],
+    itemFull: [],
     loading: false,
     error: null,
   },
@@ -59,7 +60,7 @@ const ProductSlice = createSlice({
         (state, action) => {
           state.loading = false;
           if (action.type.includes("fetchAllProducts")) {
-            state.item = action.payload;
+            state.itemFull = action.payload;
             // state.filteredItem = action.payload;
           } else if (action.type.includes("fetchProducts")) {
             state.item = action.payload;

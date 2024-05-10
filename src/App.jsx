@@ -6,6 +6,7 @@ import DetailProduct from "./Pages/Detail/DetailProduct";
 import Navbar from "./Components/NavbarComp/Navbar/Navbar";
 import AccountUser from "./Pages/Account/AccountUser";
 import Wishlist from "./Pages/Wishlist/Wishlist";
+import FooterPage from "./Components/Footer/FooterPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/products/:name" element={<DetailProduct />} />
         </Routes>
+        <FooterPage/>
       </BrowserRouter>
     </>
   );
