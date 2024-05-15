@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../../Store/ProductSlice";
-import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
 function ProductHomePage() {
@@ -64,6 +63,7 @@ function ProductHomePage() {
                 return (
                   <ProductCard
                     key={item.id}
+                    products={item}
                     images={item.images}
                     name={item.title}
                     category={item.category}

@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Rating } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import LoginPopUp from "../NavbarComp/Navbar/NavbarRight/LoginPopUp";
+import { isEqual, uniqWith } from "lodash";
+import { addCartProduct } from "../../Store/ProductSlice";
 
 function ProductCard({
+  products,
   name,
   images,
   category,
@@ -10,10 +15,31 @@ function ProductCard({
   pricing,
   discountPercentage,
 }) {
+  const [isPopup, setIsPopup] = useState(false);
+  const isLogin = useSelector((state) => state.userIsLogin.login);
+  const cart = useSelector((state) => state.products.cart);
+  const dispatch = useDispatch();
   const calDiscountPercentage = () => {
     let sum = 0;
     sum = Math.round((pricing * (100 - discountPercentage)) / 100);
     return sum;
+  };
+  const handleClick = () => {
+    if (isLogin) {
+      let productInCart = [];
+      if (localStorage.getItem("cart")) {
+        productInCart = JSON.parse(localStorage.getItem("cart"));
+      }
+      productInCart.push({
+        ...products,
+        count: 1,
+      });
+      let unique = uniqWith(productInCart, isEqual);
+      localStorage.setItem("cart", JSON.stringify(unique));
+      dispatch(addCartProduct());
+    } else {
+      setIsPopup(true);
+    }
   };
 
   return (
@@ -56,7 +82,10 @@ function ProductCard({
               </div>
             </div>
             {/* button add cart */}
-            <button className="max-sm:ml-2 inline-flex items-center px-1 sm:px-3 gap-1 text-xs sm:text-base font-medium text-center text-white bg-pink-500 rounded-lg hover:bg-pink-800 focus:ring-2 focus:outline-none focus:ring-blue-300">
+            <button
+              onClick={handleClick}
+              className="max-sm:ml-2 md:ml-4 inline-flex items-center px-1 sm:px-3 gap-1 text-xs sm:text-base font-medium text-center text-white bg-pink-500 rounded-lg hover:bg-pink-800 focus:ring-2 focus:outline-none focus:ring-blue-300"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="white"
@@ -70,6 +99,7 @@ function ProductCard({
           </div>
         </div>
       </div>
+      {isPopup && <LoginPopUp onClose={() => setIsPopup(false)} />}
     </div>
   );
 }

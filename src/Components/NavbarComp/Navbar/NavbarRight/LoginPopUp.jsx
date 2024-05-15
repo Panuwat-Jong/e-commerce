@@ -50,7 +50,7 @@ function LoginPopUp({ onClose }) {
     <div
       ref={popupRef}
       onClick={handleClosePopup}
-      className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center"
+      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-[100]"
     >
       <div className="flex flex-col p-8 bg-white  rounded-md shadow w-full max-w-md">
         <button className="place-self-end" onClick={onClose}>

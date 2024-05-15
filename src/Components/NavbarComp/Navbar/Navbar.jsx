@@ -12,7 +12,7 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className=" sticky top-0 bg-white max-h-20 mx-auto w-full py-4 border-b shadow-md z-[100]">
+    <nav className=" sticky top-0 bg-white max-h-20 mx-auto w-full py-4 border-b shadow-md z-[90]">
       <div className="mx-4 flex justify-between items-center gap-8 lg:gap-4">
         {/* Logo */}
         <Link

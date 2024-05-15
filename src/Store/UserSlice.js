@@ -17,7 +17,7 @@ const UserSlice = createSlice({
   reducers: {
     isLogin: (state) => {
       return (state.login = true), localStorage.setItem("isLogin", state.login);
-    }, 
+    },
     isLogout: (state) => {
       return (
         (state.login = false),
@@ -25,6 +25,7 @@ const UserSlice = createSlice({
         localStorage.removeItem("isLogin")
       );
     },
+    
   },
   extraReducers: (builder) => {
     builder

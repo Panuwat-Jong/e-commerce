@@ -43,10 +43,21 @@ const ProductSlice = createSlice({
   initialState: {
     item: [],
     itemFull: [],
+    cart: [],
     loading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    addCartProduct: (state) => {
+      if (typeof window !== "undefined") {
+        if (localStorage.getItem("cart")) {
+          state.cart = JSON.parse(localStorage.getItem("cart"));
+        } else {
+          state.cart = [];
+        }
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addMatcher(
@@ -80,4 +91,5 @@ const ProductSlice = createSlice({
       );
   },
 });
+export const { addCartProduct } = ProductSlice.actions;
 export default ProductSlice.reducer;
