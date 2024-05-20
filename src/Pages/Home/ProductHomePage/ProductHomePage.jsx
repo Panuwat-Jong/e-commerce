@@ -23,6 +23,7 @@ function ProductHomePage() {
                 return (
                   <ProductCard
                     key={item.id}
+                    products={item}
                     images={item.images}
                     name={item.title}
                     category={item.category}

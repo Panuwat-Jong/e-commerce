@@ -23,9 +23,9 @@ const UserSlice = createSlice({
         (state.login = false),
         localStorage.removeItem("username"),
         localStorage.removeItem("isLogin")
+        // localStorage.removeItem("cart")
       );
     },
-    
   },
   extraReducers: (builder) => {
     builder

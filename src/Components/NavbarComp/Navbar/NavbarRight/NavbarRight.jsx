@@ -58,7 +58,7 @@ function NavbarRight() {
       {isPopup && <LoginPopUp onClose={() => setIsPopup(false)} />}
 
       {/* Shopping Basket */}
-      <div className="hidden md:block">
+      <div className="hidden md:block ">
         <Cart />
       </div>
     </div>

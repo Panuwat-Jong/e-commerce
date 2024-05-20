@@ -11,7 +11,7 @@ import FooterPage from "./Components/Footer/FooterPage";
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter >
         <Navbar />
         <Routes>
           <Route path="" element={<HomePage />} />

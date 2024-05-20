@@ -1,12 +1,27 @@
-import React, { useState } from "react";
-
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import CartModel from "./CartModel";
+import { calDiscountPercentage } from "../../../../Utils/Other";
 function Cart() {
+  const isLogin = useSelector((state) => state.userIsLogin.login);
   const [popupCart, setPopupCart] = useState(false);
+  const cart = useSelector((state) => state.products.cart);
+  const totalPrice = () => {
+    const initialValue = 0;
+    return cart.reduce((currentValue, nextValue) => {
+      return (
+        currentValue +
+        nextValue.count *
+          calDiscountPercentage(nextValue.price, nextValue.discountPercentage)
+      );
+    }, initialValue);
+  };
+
   return (
     <div>
       {popupCart ? (
-        <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-end transition-all ease-in-out duration-300 ">
-          <div className="bg-white  sm:w-full max-w-sm p-5 ">
+        <div className=" fixed inset-0 bg-black bg-opacity-30 flex justify-end transition-all ease-in-out duration-300 ">
+          <div className="bg-white  sm:w-full max-w-sm p-5 overflow-y-scroll">
             <div className="flex flex-row justify-between items-center">
               <h3 className="text-2xl font-bold ">Your Cart</h3>
               <button onClick={() => setPopupCart(false)}>
@@ -22,24 +37,55 @@ function Cart() {
               </button>
             </div>
             {/* for add Product in Cart */}
-            <div className="flex flex-col justify-center items-center h-full">
-              <p className="text-2xl">Your cart is empty</p>
-            </div>
+            {cart.length > 0 && isLogin ? (
+              <div className="mt-5">
+                {cart.map((item, idx) => {
+                  return (
+                    <CartModel
+                      key={idx}
+                      id={item.id}
+                      name={item.title}
+                      stock={item.stock}
+                      count={item.count}
+                      image={item.images}
+                      price={item.price}
+                      discountPercentage={item.discountPercentage}
+                    />
+                  );
+                })}
+                <div>
+                  <div className="px-2 flex justify-between flex-row">
+                    <p className="text-2xl font-semibold">Total</p>
+                    <p className="text-2xl font-semibold">${totalPrice()}</p>
+                  </div>
+                  <button className="w-full hover:opacity-70 bg-blue-500 text-white rounded-md p-2 text-xl font-semibold mt-5">
+                    CHECKOUT
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-col justify-center items-center h-full">
+                <p className="text-2xl">Your cart is empty</p>
+              </div>
+            )}
           </div>
         </div>
       ) : (
-        <div className="relative transition-all ease-in-out duration-500" onClick={() => setPopupCart(true)}>
+        <div
+          className="relative transition-all ease-in-out duration-100 cursor-pointer hover:opacity-70"
+          onClick={() => setPopupCart(true)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="30"
             fill="grey"
-            className="bi bi-cart3"
+            className="bi bi-cart3 "
             viewBox="0 0 16 16"
           >
             <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
           </svg>
           <p className="absolute right-[-8px] top-[-12px] bg-red-500 text-center text-white rounded-full w-6">
-            0
+            {isLogin ? cart.length : 0}
           </p>
         </div>
       )}

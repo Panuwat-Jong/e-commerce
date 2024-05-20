@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Link } from "react-router-dom";
 import { Rating } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import LoginPopUp from "../NavbarComp/Navbar/NavbarRight/LoginPopUp";
 import { isEqual, uniqWith } from "lodash";
 import { addCartProduct } from "../../Store/ProductSlice";
+import { useEffect } from "react";
+import { calDiscountPercentage } from "../../Utils/Other";
 
 function ProductCard({
   products,
@@ -17,13 +19,8 @@ function ProductCard({
 }) {
   const [isPopup, setIsPopup] = useState(false);
   const isLogin = useSelector((state) => state.userIsLogin.login);
-  const cart = useSelector((state) => state.products.cart);
   const dispatch = useDispatch();
-  const calDiscountPercentage = () => {
-    let sum = 0;
-    sum = Math.round((pricing * (100 - discountPercentage)) / 100);
-    return sum;
-  };
+
   const handleClick = () => {
     if (isLogin) {
       let productInCart = [];
@@ -41,6 +38,9 @@ function ProductCard({
       setIsPopup(true);
     }
   };
+  useEffect(() => {
+    dispatch(addCartProduct());
+  }, []);
 
   return (
     <div className="max-sm:mx-8">
@@ -73,7 +73,10 @@ function ProductCard({
           <div className="flex justify-between">
             {/* pricing */}
             <div>
-              <h5 className="text-2xl font-semibold text-blue-500 ">{`$${calDiscountPercentage()}`}</h5>
+              <h5 className="text-2xl font-semibold text-blue-500 ">{`$${calDiscountPercentage(
+                pricing,
+                discountPercentage
+              )}`}</h5>
               <div className="flex items-center">
                 <p className="font-normal text-gray-400 line-through">
                   {`$${pricing}`}
