@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartModel from "./CartModel";
 import { calDiscountPercentage } from "../../../../Utils/Other";
+import { addCartProduct } from "../../../../Store/ProductSlice";
 function Cart() {
   const isLogin = useSelector((state) => state.userIsLogin.login);
   const [popupCart, setPopupCart] = useState(false);
+  const [isCheckout, setIsCheckout] = useState(false);
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.products.cart);
   const totalPrice = () => {
     const initialValue = 0;
@@ -16,59 +19,98 @@ function Cart() {
       );
     }, initialValue);
   };
+  const handleCheckout = () => {
+    localStorage.removeItem("cart");
+    dispatch(addCartProduct());
+    setPopupCart(false);
+    setIsCheckout(false);
+    alert("your order has been confirmed");
+  };
 
   return (
     <div>
       {popupCart ? (
         <div className=" fixed inset-0 bg-black bg-opacity-30 flex justify-end transition-all ease-in-out duration-300 ">
-          <div className="bg-white  sm:w-full max-w-sm p-5 overflow-y-scroll">
-            <div className="flex flex-row justify-between items-center">
-              <h3 className="text-2xl font-bold ">Your Cart</h3>
-              <button onClick={() => setPopupCart(false)}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="42"
-                  fill="currentColor"
-                  className="bi bi-x"
-                  viewBox="0 0 16 16"
+          {isCheckout ? (
+            <div className="bg-white  sm:w-full max-w-sm p-5">
+              <h1 className="text-2xl font-bold mb-2">Checkout</h1>
+              <p className="leading-5 mb-8">
+                Welcome to the checkout section. This is being a development
+                project, I haven&apos;t implemented any payment related task. If
+                you click the cancel button you&apos;ll go back to the cart
+                segment. Clicking confirm button will consider your order
+                confirmed, payment done & also order delivered successfully.
+                Another thing to mention, order history hasn&apos;t been
+                developed due to not having a proper backend api.
+              </p>
+              <div className="flex justify-between">
+                <button
+                  className="border border-black py-1 px-14 rounded-md"
+                  onClick={() => setIsCheckout(false)}
                 >
-                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
-                </svg>
-              </button>
+                  Cancel
+                </button>
+                <button
+                  className="border border-black py-1 px-14 rounded-md"
+                  onClick={handleCheckout}
+                >
+                  Confirm
+                </button>
+              </div>
             </div>
-            {/* for add Product in Cart */}
-            {cart.length > 0 && isLogin ? (
-              <div className="mt-5">
-                {cart.map((item, idx) => {
-                  return (
-                    <CartModel
-                      key={idx}
-                      id={item.id}
-                      name={item.title}
-                      stock={item.stock}
-                      count={item.count}
-                      image={item.images}
-                      price={item.price}
-                      discountPercentage={item.discountPercentage}
-                    />
-                  );
-                })}
-                <div>
-                  <div className="px-2 flex justify-between flex-row">
-                    <p className="text-2xl font-semibold">Total</p>
-                    <p className="text-2xl font-semibold">${totalPrice()}</p>
+          ) : (
+            <div className="bg-white  sm:w-full max-w-sm p-5 overflow-y-scroll">
+              <div className="flex flex-row justify-between items-center">
+                <h3 className="text-2xl font-bold ">Your Cart</h3>
+                <button onClick={() => setPopupCart(false)}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="42"
+                    fill="currentColor"
+                    className="bi bi-x"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                  </svg>
+                </button>
+              </div>
+              {/* for add Product in Cart */}
+              {cart.length > 0 && isLogin ? (
+                <div className="mt-5">
+                  {cart.map((item, idx) => {
+                    return (
+                      <CartModel
+                        key={idx}
+                        id={item.id}
+                        name={item.title}
+                        stock={item.stock}
+                        count={item.count}
+                        image={item.images}
+                        price={item.price}
+                        discountPercentage={item.discountPercentage}
+                      />
+                    );
+                  })}
+                  <div>
+                    <div className="px-2 flex justify-between flex-row">
+                      <p className="text-2xl font-semibold">Total</p>
+                      <p className="text-2xl font-semibold">${totalPrice()}</p>
+                    </div>
+                    <button
+                      onClick={() => setIsCheckout(true)}
+                      className="w-full hover:opacity-70 bg-blue-500 text-white rounded-md p-2 text-xl font-semibold mt-5"
+                    >
+                      CHECKOUT
+                    </button>
                   </div>
-                  <button className="w-full hover:opacity-70 bg-blue-500 text-white rounded-md p-2 text-xl font-semibold mt-5">
-                    CHECKOUT
-                  </button>
                 </div>
-              </div>
-            ) : (
-              <div className="flex flex-col justify-center items-center h-full">
-                <p className="text-2xl">Your cart is empty</p>
-              </div>
-            )}
-          </div>
+              ) : (
+                <div className="flex flex-col justify-center items-center h-full">
+                  <p className="text-2xl">Your cart is empty</p>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       ) : (
         <div

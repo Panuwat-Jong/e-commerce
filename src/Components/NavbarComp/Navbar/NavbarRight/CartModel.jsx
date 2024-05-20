@@ -17,7 +17,6 @@ function CartModel({
   let [isCount, setIsCount] = useState(count);
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     updateCountInLocal();
     dispatch(addCartProduct());
@@ -48,6 +47,7 @@ function CartModel({
       return setIsCount(isCount - 1);
     } else {
       handleRemoveProduct();
+      alert("Remove Product !!!");
     }
   };
 
@@ -123,7 +123,7 @@ function CartModel({
           <p className="text-base font-semibold">{`${
             calDiscountPercentage(price, discountPercentage) * isCount
           } `}</p>
-          <div >
+          <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="red"
