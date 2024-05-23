@@ -44,6 +44,7 @@ const ProductSlice = createSlice({
     item: [],
     itemFull: [],
     cart: [],
+    wishlist: [],
     loading: false,
     error: null,
   },
@@ -54,6 +55,15 @@ const ProductSlice = createSlice({
           state.cart = JSON.parse(localStorage.getItem("cart"));
         } else {
           state.cart = [];
+        }
+      }
+    },
+    addWishlistProduct: (state) => {
+      if (typeof window !== "undefined") {
+        if (localStorage.getItem("wishlist")) {
+          state.wishlist = JSON.parse(localStorage.getItem("wishlist"));
+        } else {
+          state.wishlist = [];
         }
       }
     },
@@ -91,5 +101,5 @@ const ProductSlice = createSlice({
       );
   },
 });
-export const { addCartProduct } = ProductSlice.actions;
+export const { addCartProduct, addWishlistProduct } = ProductSlice.actions;
 export default ProductSlice.reducer;

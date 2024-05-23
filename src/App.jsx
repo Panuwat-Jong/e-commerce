@@ -11,16 +11,16 @@ import FooterPage from "./Components/Footer/FooterPage";
 function App() {
   return (
     <>
-      <BrowserRouter >
+      <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path="" element={<HomePage />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/account" element={<AccountUser />} />
           <Route path="/categories" element={<Categories />} />
-          <Route path="/products/:name" element={<DetailProduct />} />
+          <Route path="/products/:id" element={<DetailProduct />} />
         </Routes>
-        <FooterPage/>
+        <FooterPage />
       </BrowserRouter>
     </>
   );

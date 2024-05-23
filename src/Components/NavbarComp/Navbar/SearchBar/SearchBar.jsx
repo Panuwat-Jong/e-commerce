@@ -16,7 +16,7 @@ function SearchBar({ resPopup }) {
           value &&
           item &&
           item.title &&
-          item.title.toLowerCase().includes(value)
+          item.title.toLowerCase().trim().includes(value?.toLowerCase())
         );
       }
     });
@@ -57,7 +57,7 @@ function SearchBar({ resPopup }) {
         {store.map((item) => {
           return (
             <Link
-              to={`/products/:${item.title}`}
+              to={`/products/${item.id}`}
               key={item.id}
               onClick={resPopup}
               className="px-2 py-1 border-b hover:bg-slate-100 first-of-type:pt-5 z-50 bg-white"

@@ -9,6 +9,7 @@ function ProductHomePage() {
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
+  
 
   return (
     <div className="mx-auto  w-full py-6">
@@ -23,8 +24,9 @@ function ProductHomePage() {
                 return (
                   <ProductCard
                     key={item.id}
+                    id={item.id}
                     products={item}
-                    images={item.images}
+                    images={item.thumbnail}
                     name={item.title}
                     category={item.category}
                     rating={item.rating}
@@ -50,7 +52,7 @@ function ProductHomePage() {
                 </p>
               </h2>
               <Link
-                to={""}
+                to={`/products/${2}`}
                 className="max-md:mb-2 font-lora font-medium bg-white rounded-md px-6 py-3 hover:bg-blue-500 hover:text-white"
               >
                 Shop Now
@@ -64,8 +66,9 @@ function ProductHomePage() {
                 return (
                   <ProductCard
                     key={item.id}
+                    id={item.id}
                     products={item}
-                    images={item.images}
+                    images={item.thumbnail}
                     name={item.title}
                     category={item.category}
                     rating={item.rating}

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 function Header() {
   return (
     <div className="mx-auto w-full py-12 bg-gradient-to-t md:bg-gradient-to-r from-blue-300 to-white ">
@@ -12,9 +13,14 @@ function Header() {
             Exclusive offer <span className="text-red-500"> -10% </span> off
             this week
           </p>
-          <button className=" font-lora font-medium bg-white rounded-md px-6 py-3 hover:bg-blue-500 hover:text-white">
-            Shop Now
-          </button>
+          <div>
+            <Link
+              to={`/products/${6}`}
+              className=" font-lora font-medium bg-white rounded-md px-6 py-3 hover:bg-blue-500 hover:text-white"
+            >
+              Shop Now
+            </Link>
+          </div>
         </div>
 
         <div className="order-1 md:order-2 place-self-center h-full  md:max-h-96  ">

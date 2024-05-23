@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { isEqual, uniqWith } from "lodash";
 import { useEffect } from "react";
 import { addCartProduct } from "../../../../Store/ProductSlice";
+
 function CartModel({
   image,
   name,
@@ -47,7 +48,6 @@ function CartModel({
       return setIsCount(isCount - 1);
     } else {
       handleRemoveProduct();
-      alert("Remove Product !!!");
     }
   };
 
@@ -63,6 +63,7 @@ function CartModel({
     });
     localStorage.setItem("cart", JSON.stringify(productInCart));
     dispatch(addCartProduct());
+    alert("Remove Product !!!");
   };
 
   return (
@@ -70,11 +71,13 @@ function CartModel({
       <div className="mb-2 border grid grid-cols-7 w-full  gap-2">
         {/* product image */}
         <div className="w-full col-span-2">
-          <img
-            src={image[0]}
-            alt="product"
-            className="w-24 h-24 object-contain"
-          />
+          {image ? (
+            <img
+              src={image[0]}
+              alt="product"
+              className="w-24 h-24 object-contain"
+            />
+          ) : null}
         </div>
         {/* product name */}
         <div className="w-full col-span-3 flex flex-col justify-center ml-3">

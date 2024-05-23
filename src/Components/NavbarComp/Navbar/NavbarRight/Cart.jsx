@@ -9,6 +9,7 @@ function Cart() {
   const [isCheckout, setIsCheckout] = useState(false);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.products.cart);
+
   const totalPrice = () => {
     const initialValue = 0;
     return cart.reduce((currentValue, nextValue) => {
@@ -19,6 +20,7 @@ function Cart() {
       );
     }, initialValue);
   };
+
   const handleCheckout = () => {
     localStorage.removeItem("cart");
     dispatch(addCartProduct());

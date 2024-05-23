@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Rating } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import { calDiscountPercentage } from "../../Utils/Other";
 
 function ProductCard({
   products,
+  id,
   name,
   images,
   category,
@@ -21,7 +22,7 @@ function ProductCard({
   const isLogin = useSelector((state) => state.userIsLogin.login);
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleClickAddCart = () => {
     if (isLogin) {
       let productInCart = [];
       if (localStorage.getItem("cart")) {
@@ -45,10 +46,10 @@ function ProductCard({
   return (
     <div className="max-sm:mx-8">
       <div className="max-w-sm w-full h-full bg-white border border-gray-200 hover:rounded-lg hover:shadow-xl ">
-        <Link to={`/products/:${name}`}>
+        <Link to={`/products/${id}`}>
           <img
             className="rounded-t-lg w-full h-52 object-contain "
-            src={images[0]}
+            src={images}
             alt={name}
           />
         </Link>
@@ -86,7 +87,7 @@ function ProductCard({
             </div>
             {/* button add cart */}
             <button
-              onClick={handleClick}
+              onClick={handleClickAddCart}
               className="max-sm:ml-2 md:ml-4 inline-flex items-center px-1 sm:px-3 gap-1 text-xs sm:text-base font-medium text-center text-white bg-pink-500 rounded-lg hover:bg-pink-800 focus:ring-2 focus:outline-none focus:ring-blue-300"
             >
               <svg
