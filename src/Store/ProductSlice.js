@@ -14,29 +14,12 @@ export const fetchAllProducts = createAsyncThunk(
   "products/fetchAllProducts",
   async () => {
     const response = await axios.get(
-      `${BASE_URL_PRODUCTS}?limit=${100}&skip=${0}`
+      `${BASE_URL_PRODUCTS}?limit=${196}`
     );
     return response.data;
   }
 );
 
-export const fetchCategories = createAsyncThunk(
-  "products/categories",
-  async () => {
-    const response = await axios.get(`${BASE_URL_PRODUCTS}/categories`);
-    return response.data;
-  }
-);
-
-export const fetchProductCategories = createAsyncThunk(
-  "product/fetchProductCategories",
-  async (products) => {
-    const response = await axios.get(
-      `${BASE_URL_PRODUCTS}/categories/${products}`
-    );
-    return response.data;
-  }
-);
 
 const ProductSlice = createSlice({
   name: "products",
@@ -82,14 +65,9 @@ const ProductSlice = createSlice({
           state.loading = false;
           if (action.type.includes("fetchAllProducts")) {
             state.itemFull = action.payload;
-            // state.filteredItem = action.payload;
           } else if (action.type.includes("fetchProducts")) {
             state.item = action.payload;
-          } else if (action.type.includes("fetchCategories")) {
-            state.item = action.payload;
-          } else if (action.type.includes("fetchProductCategories")) {
-            state.item = action.payload;
-          }
+          }   
         }
       )
       .addMatcher(

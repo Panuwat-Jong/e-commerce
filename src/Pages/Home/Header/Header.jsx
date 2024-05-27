@@ -15,7 +15,7 @@ function Header() {
           </p>
           <div>
             <Link
-              to={`/products/${6}`}
+              to={`/products/${78}`}
               className=" font-lora font-medium bg-white rounded-md px-6 py-3 hover:bg-blue-500 hover:text-white"
             >
               Shop Now

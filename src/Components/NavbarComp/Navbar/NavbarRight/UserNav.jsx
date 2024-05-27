@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUser, isLogout } from "../../../../Store/UserSlice";
 import { Link } from "react-router-dom";
 
-function UserNav() {
+function UserNav({ resPopup }) {
   const dispatch = useDispatch();
   const [onShow, setOnShow] = useState(false);
 
@@ -13,22 +13,18 @@ function UserNav() {
     dispatch(fetchUser());
   }, [dispatch]);
 
-  
-
   return (
     <div className="relative " onClick={() => setOnShow(!onShow)}>
       <div className="flex items-center gap-2 cursor-pointer ">
         <img src={user.imageAccount} alt="logo" className="h-6 rounded-full" />
         <div>
-          <p className="text-2xl text-gray-500">
-            {user.username}
-          </p>
+          <p className="text-2xl text-gray-500">{user.username}</p>
         </div>
       </div>
       {onShow ? (
         <div className="absolute border-2 shadow-lg px-6 py-3 bg-white left-[-25px] top-10 ">
-          <ul className="">
-            <li className="flex items-center gap-2 ">
+          <ul className=""  onClick={resPopup}>
+            <li className="flex items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="grey"

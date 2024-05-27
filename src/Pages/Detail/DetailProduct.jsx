@@ -36,7 +36,7 @@ function DetailProduct() {
 
   const callDataSimilar = async (category) => {
     const response = await axios.get(
-      `${BASE_URL_PRODUCTS}/category/${category}`
+      `${BASE_URL_PRODUCTS}/category/${category}?limit=5`
     );
     const responseData = response.data.products;
     if (responseData) {
@@ -110,22 +110,17 @@ function DetailProduct() {
   };
 
   useEffect(() => {
-    if (id) {
-      callData();
-    }
-  }, [id]);
-
-  useEffect(() => {
     callDataSimilar(detailProduct.category);
-  });
+  }, [detailProduct]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && id) {
       window.scrollTo({
         top: 0,
         left: 0,
         behavior: "smooth",
       });
+      callData();
     }
   }, [id]);
 

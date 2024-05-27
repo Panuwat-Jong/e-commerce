@@ -52,7 +52,7 @@ function ProductHomePage() {
                 </p>
               </h2>
               <Link
-                to={`/products/${2}`}
+                to={`/products/${160}`}
                 className="max-md:mb-2 font-lora font-medium bg-white rounded-md px-6 py-3 hover:bg-blue-500 hover:text-white"
               >
                 Shop Now

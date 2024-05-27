@@ -6,7 +6,7 @@ import UserNav from "./UserNav";
 import { isLogin } from "../../../../Store/UserSlice";
 import Cart from "./Cart";
 
-function NavbarRight() {
+function NavbarRight({ resPopup }) {
   const [isPopup, setIsPopup] = useState(false);
   const login = useSelector((state) => state.userIsLogin.login);
   const dispatch = useDispatch();
@@ -19,19 +19,22 @@ function NavbarRight() {
       dispatch(isLogin());
     }
   }, [dispatch]);
-
   return (
     <div className="flex gap-8 items-center flex-col md:flex-row  ">
       {/* categories */}
       <div>
-        <Link to={"/categories"} className="text-xl font-bold ">
+        <Link
+          to={"/categories"}
+          className="text-xl font-bold "
+          onClick={resPopup}
+        >
           Products
         </Link>
       </div>
       {/* Account Login */}
       {login ? (
         // Login is true
-        <UserNav />
+        <UserNav resPopup={resPopup} />
       ) : (
         // is not Login
         <div

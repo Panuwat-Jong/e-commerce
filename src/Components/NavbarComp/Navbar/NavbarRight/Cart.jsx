@@ -133,6 +133,7 @@ function Cart() {
           </p>
         </div>
       )}
+      
     </div>
   );
 }
