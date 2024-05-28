@@ -7,6 +7,7 @@ import { isEqual, uniqWith } from "lodash";
 import { addCartProduct } from "../../Store/ProductSlice";
 import { useEffect } from "react";
 import { calDiscountPercentage } from "../../Utils/Other";
+import PropTypes from "prop-types";
 
 function ProductCard({
   products,
@@ -44,7 +45,7 @@ function ProductCard({
   }, []);
 
   return (
-    <div className="max-sm:mx-8">
+    <div className="">
       <div className="max-w-sm w-full h-full bg-white border border-gray-200 hover:rounded-lg hover:shadow-xl ">
         <Link to={`/products/${id}`}>
           <img
@@ -53,7 +54,7 @@ function ProductCard({
             alt={name}
           />
         </Link>
-        <div className="p-5 border-t-[1px] hover:opacity-85 flex-col ">
+        <div className="p-5  border-t-[1px] hover:opacity-85 flex-col ">
           <p className="text-sm text-gray-400">{category}</p>
           <h5 className=" text-2xl font-bold tracking-tight text-gray-900 ">
             {name}
@@ -107,5 +108,16 @@ function ProductCard({
     </div>
   );
 }
+
+ProductCard.propTypes = {
+  products: PropTypes.object.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  name: PropTypes.string.isRequired,
+  images: PropTypes.string.isRequired,
+  category: PropTypes.string,
+  rating: PropTypes.number.isRequired,
+  pricing: PropTypes.number.isRequired,
+  discountPercentage: PropTypes.number.isRequired,
+};
 
 export default ProductCard;

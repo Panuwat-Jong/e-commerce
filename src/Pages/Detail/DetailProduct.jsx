@@ -28,7 +28,7 @@ function DetailProduct() {
     const response = await axios.get(`${BASE_URL_PRODUCTS}/${id}`);
     const responseData = response.data;
     if (responseData) {
-      return setDetailProduct({
+      setDetailProduct({
         ...responseData,
       });
     }
@@ -150,7 +150,7 @@ function DetailProduct() {
                 <div className="flex items-center mb-2  text-gray-700 ">
                   <Rating
                     name="half-rating-read"
-                    defaultValue={detailProduct?.rating}
+                    value={detailProduct.rating}
                     precision={0.5}
                     className="mr-2"
                     size="small"

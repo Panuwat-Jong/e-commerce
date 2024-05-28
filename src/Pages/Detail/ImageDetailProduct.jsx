@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from "react";
-
+import { useState } from "react";
+import PropTypes from "prop-types";
+import { useEffect } from "react";
 function ImageDetailProduct({ images }) {
-  let [mainImages, setMainImages] = useState(images[0]);
+  let [mainImage, setMainImage] = useState(images[0]);
 
+  
+  useEffect(() => {
+    setMainImage(images[0])
+  },[images])
 
   return (
     <div className="flex flex-col col-span-2 w-full">
       <img
-        src={mainImages}
+        src={mainImage}
         alt="product"
         className="sm:w-full mb-3 w-64  max-w-sm h-64 self-center "
       />
@@ -19,7 +24,7 @@ function ImageDetailProduct({ images }) {
               alt="product"
               key={idx}
               className="cursor-pointer hover:outline w-full max-w-14 "
-              onClick={() => setMainImages(images[idx])}
+              onClick={() => setMainImage(images[idx])}
             />
           );
         })}
@@ -27,5 +32,9 @@ function ImageDetailProduct({ images }) {
     </div>
   );
 }
+
+ImageDetailProduct.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default ImageDetailProduct;

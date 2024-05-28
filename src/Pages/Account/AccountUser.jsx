@@ -1,15 +1,23 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../Store/UserSlice";
 import HomePage from "../Home/HomePage";
+import { addCartProduct } from "../../Store/ProductSlice";
 
 function AccountUser() {
   const isLogin = useSelector((state) => state.userIsLogin.login);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userIsLogin.user);
+
   useEffect(() => {
     dispatch(fetchUser());
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(addCartProduct());
+  }, [dispatch]);
+
+
   return (
     <div>
       {isLogin ? (
