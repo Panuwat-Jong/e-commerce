@@ -45,8 +45,8 @@ function ProductCard({
   }, []);
 
   return (
-    <div className="">
-      <div className="max-w-sm w-full h-full bg-white border border-gray-200 hover:rounded-lg hover:shadow-xl ">
+    <div className="h-full  w-full">
+      <div className="max-w-sm w-full bg-white border border-gray-200 hover:rounded-lg hover:shadow-xl ">
         <Link to={`/products/${id}`}>
           <img
             className="rounded-t-lg w-full h-52 object-contain "
@@ -56,9 +56,13 @@ function ProductCard({
         </Link>
         <div className="p-5  border-t-[1px] hover:opacity-85 flex-col ">
           <p className="text-sm text-gray-400">{category}</p>
-          <h5 className=" text-2xl font-bold tracking-tight text-gray-900 ">
+          <a
+            href={`/products/${id}`}
+            className=" text-base font-bold tracking-tight text-gray-900 hover:underline"
+          >
             {name}
-          </h5>
+          </a>
+
           {/* rating */}
           <div className="flex items-center mb-2  text-gray-700 ">
             <Rating

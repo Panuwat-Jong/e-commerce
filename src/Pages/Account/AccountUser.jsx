@@ -21,9 +21,9 @@ function AccountUser() {
   return (
     <div>
       {isLogin ? (
-        <div className="w-full max-w-6xl m-auto mt-5 mb-16 md:mb-36">
+        <div className="w-full max-w-6xl m-auto mt-5 mb-16 md:mb-28">
           <div className="mx-4">
-            <h1 className="text-4xl font-lora font-bold mb-5">Your Account</h1>
+            <h1 className="text-4xl font-lora font-bold mb-12">Your Account</h1>
             <div className="flex flex-col lg:flex-row max-lg:text-center items-start gap-5 sm:mx-10 md:mx-20">
               <div className="max-lg:self-center">
                 <img

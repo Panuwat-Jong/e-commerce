@@ -82,9 +82,12 @@ function CartModel({
         {/* product name */}
         <div className="w-full col-span-3 flex flex-col justify-center ml-3">
           <div>
-            <p className="text-base font-semibold justify-center items-center">
+            <a
+              href={`/products/${id}`}
+              className="text-base font-semibold justify-center items-center hover:underline"
+            >
               {name}
-            </p>
+            </a>
             <p>
               {`$${calDiscountPercentage(price, discountPercentage)}`} {"\n"}
             </p>
