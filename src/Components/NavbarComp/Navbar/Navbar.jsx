@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar/SearchBar";
 import NavbarRight from "./NavbarRight/NavbarRight";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Cart from "./NavbarRight/Cart";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-
-
 
   return (
     <nav className=" sticky top-0 bg-white max-h-20 mx-auto w-full py-4 border-b shadow-md z-[50]">
@@ -71,7 +69,7 @@ function Navbar() {
       >
         <div className="bg-white shadow-xl p-10 flex flex-col items-center gap-4">
           <SearchBar resPopup={() => setIsOpen(false)} />
-          <NavbarRight resPopup={() => setIsOpen(false)}/>
+          <NavbarRight resPopup={() => setIsOpen(false)} />
         </div>
       </div>
     </nav>

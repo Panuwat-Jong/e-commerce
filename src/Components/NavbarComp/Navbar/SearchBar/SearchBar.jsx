@@ -7,6 +7,7 @@ function SearchBar({ resPopup }) {
   const product = useSelector((state) => state.products.itemFull);
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState("");
+  const [isPopupSearch, setIsPopupSearch] = useState(false);
   let [store, setStore] = useState([]);
 
   const findProduct = (value) => {
@@ -24,6 +25,7 @@ function SearchBar({ resPopup }) {
   };
 
   const handleOnChange = (searchProduct) => {
+    setIsPopupSearch(true);
     findProduct(searchInput);
     setSearchInput(searchProduct);
   };
@@ -53,20 +55,24 @@ function SearchBar({ resPopup }) {
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
         </svg>
       </div>
-      <div className="absolute w-full md:max-w-sm lg:left-6 bg-white flex flex-col shadow-md overflow-y-scroll ">
-        {store.map((item) => {
-          return (
-            <Link
-              to={`/products/${item.id}`}
-              key={item.id}
-              onClick={resPopup}
-              className="px-2 py-1 border-b hover:bg-slate-100 first-of-type:pt-5 z-50 bg-white"
-            >
-              {item.title}
-            </Link>
-          );
-        })}
-      </div>
+      {isPopupSearch && searchInput.length > 0 ? (
+        <div className="absolute w-full md:max-w-sm lg:left-6 bg-white flex flex-col shadow-md overflow-y-scroll ">
+          {store.map((item) => {
+            return (
+              <Link
+                to={`/products/${item.id}`}
+                key={item.id}
+                onClick={() => {
+                  resPopup, setIsPopupSearch(false);
+                }}
+                className="px-2 py-1 border-b hover:bg-slate-100 first-of-type:pt-5 z-50 bg-white"
+              >
+                {item.title}
+              </Link>
+            );
+          })}
+        </div>
+      ) : null}
     </div>
   );
 }
