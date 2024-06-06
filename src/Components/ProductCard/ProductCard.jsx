@@ -40,9 +40,10 @@ function ProductCard({
       setIsPopup(true);
     }
   };
+
   useEffect(() => {
     dispatch(addCartProduct());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="h-full  w-full">

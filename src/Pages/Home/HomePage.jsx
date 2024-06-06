@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Header from "./Header/Header";
 import Benefit from "./Benefit";
 import ProductHomePage from "./ProductHomePage/ProductHomePage";

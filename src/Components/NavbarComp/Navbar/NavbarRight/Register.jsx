@@ -1,5 +1,3 @@
-import React from "react";
-
 function Register({ onRegisterClose }) {
   return (
     <div className="flex flex-col items-center gap-y-2">

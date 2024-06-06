@@ -11,7 +11,6 @@ function LoginPopUp({ onClose }) {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userIsLogin.user);
-
   const handleClosePopup = (e) => {
     if (popupRef.current == e.target) {
       onClose();

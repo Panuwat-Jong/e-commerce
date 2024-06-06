@@ -63,7 +63,7 @@ function SearchBar({ resPopup }) {
                 to={`/products/${item.id}`}
                 key={item.id}
                 onClick={() => {
-                  resPopup, setIsPopupSearch(false);
+                  resPopup(), setIsPopupSearch(false);
                 }}
                 className="px-2 py-1 border-b hover:bg-slate-100 first-of-type:pt-5 z-50 bg-white"
               >

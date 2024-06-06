@@ -1,5 +1,3 @@
-import React from "react";
-
 function Benefit() {
   return (
     <div className="mx-auto w-full py-8">
