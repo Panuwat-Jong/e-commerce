@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 function Register({ onRegisterClose }) {
   return (
     <div className="flex flex-col items-center gap-y-2">

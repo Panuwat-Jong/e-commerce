@@ -1,5 +1,3 @@
-import React from "react";
-
 function FooterPage() {
   return (
     <footer className="mt-4">

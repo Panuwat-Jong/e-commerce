@@ -1,9 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
 import axios from "axios";
 import { BASE_URL_PRODUCTS } from "../../../Utils/BaseUrl";
-import PropTypes from "prop-types";
 
 function ProductCategories({ categoriesList }) {
   let [productCategories, setProductCategories] = useState([]);
@@ -70,7 +70,4 @@ function ProductCategories({ categoriesList }) {
   );
 }
 
-ProductCategories.propTypes = {
-  categoriesList: PropTypes.string.isRequired,
-};
 export default ProductCategories;

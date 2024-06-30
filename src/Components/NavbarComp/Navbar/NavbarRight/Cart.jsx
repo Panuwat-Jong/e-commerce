@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import CartModel from "./CartModel";
 import { calDiscountPercentage } from "../../../../Utils/Other";
 import { addCartProduct } from "../../../../Store/ProductSlice";
+
+
 function Cart() {
   const isLogin = useSelector((state) => state.userIsLogin.login);
   const [popupCart, setPopupCart] = useState(false);

@@ -1,10 +1,10 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { calDiscountPercentage } from "../../../../Utils/Other";
 import { useDispatch, useSelector } from "react-redux";
 import { isEqual, uniqWith } from "lodash";
 import { useEffect } from "react";
 import { addCartProduct } from "../../../../Store/ProductSlice";
-import PropTypes from "prop-types";
 
 function CartModel({
   image,
@@ -147,15 +147,5 @@ function CartModel({
     </div>
   );
 }
-
-CartModel.propTypes = {
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  discountPercentage: PropTypes.number.isRequired,
-  count: PropTypes.number.isRequired,
-  stock: PropTypes.number,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-};
 
 export default CartModel;

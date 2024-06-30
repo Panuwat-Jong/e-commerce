@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllProducts } from "../../../../Store/ProductSlice";
 import { useEffect, useState } from "react";
@@ -13,12 +14,10 @@ function SearchBar({ resPopup }) {
   const findProduct = (value) => {
     const result = product.products.filter((item) => {
       if (value && value.length > 1) {
-        return (
-          value &&
-          item &&
-          item.title &&
-          item.title.toLowerCase().trim().includes(value?.toLowerCase())
-        );
+        return item?.title
+          ?.toLowerCase()
+          ?.trim()
+          ?.includes(value?.toLowerCase());
       }
     });
     return setStore(result);

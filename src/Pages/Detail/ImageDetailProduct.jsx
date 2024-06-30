@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
-import PropTypes from "prop-types";
 import { useEffect } from "react";
+
 function ImageDetailProduct({ images }) {
   let [mainImage, setMainImage] = useState(images[0]);
 
@@ -32,9 +33,5 @@ function ImageDetailProduct({ images }) {
     </div>
   );
 }
-
-ImageDetailProduct.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
 
 export default ImageDetailProduct;
